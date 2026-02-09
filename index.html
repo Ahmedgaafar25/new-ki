@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student ID Card - Sarah Mitchell</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .id-card {
+            width: 340px;
+            height: 214px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* FRONT SIDE */
+        .card-front {
+            padding: 20px;
+            color: white;
+            position: relative;
+        }
+
+        .card-header {
+            text-align: center;
+            border-bottom: 2px solid #f4c430;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .university-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #f4c430;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-type {
+            font-size: 10px;
+            color: #ffffff;
+            margin-top: 3px;
+        }
+
+        .card-body {
+            display: flex;
+            gap: 15px;
+        }
+
+        .photo-section {
+            flex-shrink: 0;
+        }
+
+        .photo {
+            width: 80px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: 3px solid #f4c430;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .info-section {
+            flex: 1;
+            font-size: 11px;
+        }
+
+        .info-row {
+            margin-bottom: 8px;
+        }
+
+        .info-label {
+            color: #f4c430;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            font-weight: bold;
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        .validity {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 9px;
+            text-align: right;
+        }
+
+        /* BACK SIDE */
+        .card-back {
+            padding: 20px;
+            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+            color: white;
+            font-size: 10px;
+        }
+
+        .back-header {
+            text-align: center;
+            color: #f4c430;
+            font-weight: bold;
+            font-size: 12px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .emergency-section {
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            color: #f4c430;
+            font-size: 10px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .detail-line {
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .barcode {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .barcode-img {
+            width: 120px;
+            height: 30px;
+            background: white;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            font-family: 'Courier New', monospace;
+            font-size: 8px;
+            font-weight: bold;
+        }
+
+        .terms {
+            font-size: 8px;
+            color: #ccc;
+            text-align: center;
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                gap: 10mm;
+            }
+            .id-card {
+                width: 85.6mm;
+                height: 53.98mm;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- FRONT SIDE -->
+        <div class="id-card">
+            <div class="card-front">
+                <div class="card-header">
+                    <div class="university-name">Riverside University</div>
+                    <div class="card-type">Student Identification Card</div>
+                </div>
+                
+                <div class="card-body">
+                    <div class="photo-section">
+                        <div class="photo">👤</div>
+                    </div>
+                    
+                    <div class="info-section">
+                        <div class="info-row">
+                            <div class="info-label">Name</div>
+                            <div class="info-value">SARAH MITCHELL</div>
+                        </div>
+                        
+                        <div class="info-row">
+                            <div class="info-label">Student ID</div>
+                            <div class="info-value">STU-2026-8472</div>
+                        </div>
+                        
+                        <div class="info-row">
+                            <div class="info-label">Department</div>
+                            <div class="info-value">Computer Science</div>
+                        </div>
+                        
+                        <div class="info-row">
+                            <div class="info-label">Year / Blood Type</div>
+                            <div class="info-value">2nd Year (2025-26) | O+</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="validity">
+                    <div>Issued: Sept 2025</div>
+                    <div>Expires: June 2027</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BACK SIDE -->
+        <div class="id-card">
+            <div class="card-back">
+                <div class="back-header">Emergency Information</div>
+                
+                <div class="emergency-section">
+                    <div class="section-title">Emergency Contact</div>
+                    <div class="detail-line"><strong>Name:</strong> James Mitchell (Father)</div>
+                    <div class="detail-line"><strong>Phone:</strong> +1-555-0123</div>
+                </div>
+                
+                <div class="emergency-section">
+                    <div class="section-title">Student Details</div>
+                    <div class="detail-line"><strong>DOB:</strong> March 15, 2006</div>
+                    <div class="detail-line"><strong>Address:</strong> 245 Oak Street, Riverside, CA 92501</div>
+                </div>
+                
+                <div class="barcode">
+                    <div class="barcode-img">||||| STU-2026-8472 |||||</div>
+                </div>
+                
+                <div class="emergency-section" style="text-align: center; margin-top: 8px;">
+                    <div class="detail-line"><strong>Riverside University</strong></div>
+                    <div class="detail-line">1200 University Ave, Riverside, CA 92501</div>
+                    <div class="detail-line">Phone: (555) 123-4567 | www.riverside.edu</div>
+                </div>
+                
+                <div class="terms">
+                    This card is property of Riverside University. If found, please return to Student Services.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
