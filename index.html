@@ -3,38 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student ID Card - Sarah Mitchell</title>
+    <title>Student Identity Kit Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter&family=Roboto+Mono&family=Dancing+Script&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Arial', sans-serif;
-            background: #f0f0f0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            display: flex;
+            background: #f4f4f4;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+        .sidebar {
+            background: #7C1E3D;
+            color: white;
+            padding: 20px;
+            flex: 1;
+        }
+        .preview-area {
+            flex: 2;
+            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+        }
+        .document {
+            border: 1px solid #ccc;
             padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: none;
+        }
+        .show {
+            display: block;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background: #D4AF37;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #c99e31;
+        }
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Configuration Panel</h2>
+            <select id="university-preset">
+                <option value="Oxford">Oxford</option>
+                <option value="Harvard">Harvard</option>
+                <option value="Stanford">Stanford</option>
+                <option value="MIT">MIT</option>
+                <option value="Custom">Custom</option>
+            </select>
+            <input type="text" id="university-name" placeholder="University Name" value="Riverside University">
+            <input type="text" id="university-subtitle" placeholder="Subtitle">
+            <input type="color" id="theme-color" value="#7C1E3D">
+            <input type="file" id="logo-upload" accept="image/*"> <br>
+            <h3>Student Details</h3>
+            <input type="text" id="student-name" placeholder="Student Name" value="Jordan Maxwell">
+            <input type="text" id="student-id" placeholder="Student ID" value="RU-2026-4782">
+            <input type="text" id="department" placeholder="Department" value="Computer Science">
+            <input type="email" id="email" placeholder="Email">
+            <input type="text" id="dates" placeholder="Dates">
+            <button id="random-id">Random ID</button>
+            <h3>Photo Upload</h3>
+            <input type="file" id="photo-upload" accept="image/*"> <br>
+            <input type="date" id="valid-until">
+            <h3>Signatory Information</h3>
+            <input type="text" id="signatory-name" placeholder="Signatory Name">
+            <input type="text" id="signatory-title" placeholder="Signatory Title">
+            <h3>Download</h3>
+            <button id="download-id">Download ID Card</button>
+            <button id="download-certificate">Download Certificate</button>
+            <button id="download-record">Download Academic Record</button>
+            <button id="download-library">Download Library Card</button>
+        </div>
+        <div class="preview-area">
+            <div id="modern-id" class="document show">
+                <h2>Student ID Card</h2>
+                <p>University: Riverside University</p>
+                <p>Name: Jordan Maxwell</p>
+                <p>ID: RU-2026-4782</p>
+                <p>Department: Computer Science</p>
+            </div>
+            <div id="enrollment-certificate" class="document">
+                <h2>Enrollment Certificate</h2>
+                <p>University: Riverside University</p>
+                <p>Student: Jordan Maxwell</p>
+            </div>
+            <div id="academic-record" class="document">
+                <h2>Academic Record</h2>
+                <p>University: Riverside University</p>
+                <p>Student: Jordan Maxwell</p>
+            </div>
+            <div id="library-card" class="document">
+                <h2>Library Card</h2>
+                <p>University: Riverside University</p>
+                <p>Name: Jordan Maxwell</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script>
+        document.querySelectorAll('select, input').forEach(el => {
+            el.addEventListener('input', updatePreview);
+        });
+
+        function updatePreview() {
+            const universityName = document.getElementById('university-name').value;
+            const studentName = document.getElementById('student-name').value;
+            const studentId = document.getElementById('student-id').value;
+            const department = document.getElementById('department').value;
+            document.getElementById('modern-id').innerHTML = `<h2>Student ID Card</h2><p>University: ${universityName}</p><p>Name: ${studentName}</p><p>ID: ${studentId}</p><p>Department: ${department}</p>`;
         }
 
-        .container {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+        document.getElementById('random-id').addEventListener('click', function() {
+            const randomId = 'RU-' + Math.floor(Math.random() * 10000);
+            document.getElementById('student-id').value = randomId;
+            updatePreview();
+        });
 
-        .id-card {
-            width: 340px;
-            height: 214px;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            position: relative;
+        document.getElementById('download-id').addEventListener('click', function() {
+            html2canvas(document.getElementById('modern-id')).then(canvas => {
+                let link = document.createElement('a');
+                link.download = 'student_id_card.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        });
+    </script>
+</body>
+</html>            position: relative;
             overflow: hidden;
         }
 
@@ -272,4 +393,5 @@
         </div>
     </div>
 </body>
+
 </html>
